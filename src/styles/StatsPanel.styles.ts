@@ -7,22 +7,17 @@ export const StatsContainer = styled.div`
 `;
 
 export const StatCard = styled.div`
-  flex: 1;
+  padding: 18px;
 
-  background: #161b22;
+  border-radius: 14px;
 
-  border: 1px solid #30363d;
+  background:
+    rgba(255,255,255,.03);
 
-  border-radius: 12px;
+  border:
+    1px solid rgba(255,255,255,.08);
 
-  padding: 16px;
-
-  transition: 0.2s ease;
-
-  &:hover {
-    border-color: #58a6ff;
-    transform: translateY(-2px);
-  }
+  backdrop-filter: blur(20px);
 `;
 
 export const StatValue = styled.h3`
@@ -34,5 +29,5 @@ export const StatValue = styled.h3`
 export const StatLabel = styled.p`
   margin-top: 8px;
   color: #8b949e;
-  font-size: 14px;
+  font-size: 20px;
 `;

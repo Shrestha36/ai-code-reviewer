@@ -7,10 +7,12 @@ import {
 
 type Props = {
   lines: number;
+  confidence: number;
 };
 
 export default function StatsPanel({
   lines,
+  confidence,
 }: Props) {
   return (
     <StatsContainer>
@@ -20,8 +22,8 @@ export default function StatsPanel({
       </StatCard>
 
       <StatCard>
-        <StatValue>AI</StatValue>
-        <StatLabel>Powered Review</StatLabel>
+        <StatValue>{confidence}%</StatValue>
+        <StatLabel>Confidence Level</StatLabel>
       </StatCard>
 
       <StatCard>

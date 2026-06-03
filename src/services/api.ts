@@ -14,3 +14,14 @@ export const reviewCode = async (
 
   return response.data;
 };
+
+export const explainLine = async (line: string) => {
+  const response = await axios.post(
+    "http://localhost:4000/api/explain",
+    {
+      line,
+    }
+  );
+
+  return response.data;
+};

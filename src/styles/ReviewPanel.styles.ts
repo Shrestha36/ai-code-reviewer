@@ -26,5 +26,5 @@ export const ReviewContent = styled.pre`
 
   color: #d1d5db;
 
-  font-size: 14px;
+  font-size: 20px;
 `;

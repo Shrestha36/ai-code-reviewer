@@ -1,17 +1,22 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  background: #161b22;
+  padding: 20px 32px;
 
-  border: 1px solid #30363d;
+  border: 1px solid rgba(255,255,255,.08);
 
-  border-radius: 12px;
+  border-radius: 18px;
 
-  padding: 24px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15,23,42,.95),
+      rgba(10,15,25,.95)
+    );
 `;
 
 export const Title = styled.h1`

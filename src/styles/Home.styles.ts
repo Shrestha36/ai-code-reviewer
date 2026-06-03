@@ -47,7 +47,7 @@ export const ReviewButton = styled.button`
 
   color: white;
 
-  font-size: 16px;
+  font-size: 18px;
 
   font-weight: 600;
 

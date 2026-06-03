@@ -19,6 +19,7 @@ function Home() {
   const [code, setCode] = useState("// Paste your code here");
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
+  const [confidence, setConfidence] = useState(0);
 
   const handleReview = async () => {
     setLoading(true);
@@ -27,31 +28,48 @@ function Home() {
       const result = await reviewCode(language, code);
 
       setReview(result.review);
+      setConfidence(result.confidence);
     } catch (error) {
+      console.error(error);
       setReview("Failed to get AI review.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
     <PageContainer>
       <Header />
 
-      <LanguageSelector language={language} setLanguage={setLanguage} />
+      <LanguageSelector
+        language={language}
+        setLanguage={setLanguage}
+      />
 
       <ContentGrid>
-        <CodeEditor language={language} code={code} setCode={setCode} />
+        <CodeEditor
+          language={language}
+          code={code}
+          setCode={setCode}
+        />
 
         <ReviewSection>
-          <StatsPanel lines={code.split("\n").length} />
+          <StatsPanel
+            lines={code.split("\n").length}
+            confidence={confidence}
+          />
 
           <ReviewPanel review={review} />
         </ReviewSection>
       </ContentGrid>
 
-      <ReviewButton onClick={handleReview} disabled={loading}>
-        {loading ? "🤖 Analyzing Code..." : "Review Code"}
+      <ReviewButton
+        onClick={handleReview}
+        disabled={loading}
+      >
+        {loading
+          ? "🤖 Analyzing Code..."
+          : "Review Code"}
       </ReviewButton>
     </PageContainer>
   );

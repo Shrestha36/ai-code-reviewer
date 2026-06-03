@@ -59,6 +59,7 @@ app.post("/api/review", async (req, res) => {
 
     return res.json({
       review: completion.choices[0].message.content,
+      confidence: 95,
     });
   } catch (error) {
     console.error("========== ERROR ==========");
@@ -68,6 +69,49 @@ app.post("/api/review", async (req, res) => {
     return res.status(500).json({
       message: error.message,
       stack: error.stack,
+    });
+  }
+});
+
+app.post("/api/explain", async (req, res) => {
+  try {
+    const { line } = req.body;
+
+    const completion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "system",
+          content: `
+You are a Senior Software Architect.
+
+Analyze the provided code line and return ONLY:
+
+🧠 Purpose
+⚡ Performance Impact
+🧮 Memory Impact
+🔒 Security Concerns
+✅ Recommendation
+
+Keep each section under 2 sentences.
+Use concise bullet points.
+`,
+        },
+        {
+          role: "user",
+          content: line,
+        },
+      ],
+      model: "llama-3.3-70b-versatile",
+    });
+
+    res.json({
+      explanation: completion.choices[0].message.content,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      error: "Failed to explain line",
     });
   }
 });
