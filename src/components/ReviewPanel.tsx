@@ -1,18 +1,19 @@
+import {
+  ReviewContainer,
+  ReviewTitle,
+  ReviewContent,
+} from "../styles/ReviewPanel.styles";
+
 type Props = {
   review: string;
 };
 
-const ReviewPanel = ({ review }: Props) => {
+export default function ReviewPanel({ review }: Props) {
   return (
-    <div>
-      <h2>AI Review</h2>
+    <ReviewContainer>
+      <ReviewTitle>AI Review</ReviewTitle>
 
-      <p>
-        {review ||
-          "Paste code and click Review Code"}
-      </p>
-    </div>
+      <ReviewContent>{review || "Waiting for analysis..."}</ReviewContent>
+    </ReviewContainer>
   );
-};
-
-export default ReviewPanel;
+}

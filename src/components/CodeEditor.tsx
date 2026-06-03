@@ -6,20 +6,14 @@ type Props = {
   setCode: (code: string) => void;
 };
 
-const CodeEditor = ({
-  language,
-  code,
-  setCode,
-}: Props) => {
+const CodeEditor = ({ language, code, setCode }: Props) => {
   return (
     <Editor
-      height="70vh"
-      language={language}
+      height="80vh"
       theme="vs-dark"
+      language={language}
       value={code}
-      onChange={(value) =>
-        setCode(value || "")
-      }
+      onChange={(value) => setCode(value || "")}
     />
   );
 };

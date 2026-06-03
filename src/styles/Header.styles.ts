@@ -1,68 +1,38 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 20px 32px;
+  background: #161b22;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #30363d;
 
-  background: rgba(15, 23, 42, 0.6);
+  border-radius: 12px;
 
-  backdrop-filter: blur(10px);
-
-  border-radius: 16px;
-
-  margin-bottom: 24px;
-`;
-
-export const LogoSection = styled.div`
-  display: flex;
-  flex-direction: column;
+  padding: 24px;
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-
+  font-size: 32px;
   margin: 0;
 `;
 
 export const Subtitle = styled.p`
-  margin-top: 4px;
-
-  color: #94a3b8;
-
-  font-size: 0.95rem;
-`;
-
-export const ActionContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  margin-top: 8px;
+  color: #8b949e;
 `;
 
 export const GithubButton = styled.button`
-  border: none;
-
-  background: #2563eb;
-
+  background: #238636;
   color: white;
 
-  padding: 10px 16px;
+  border: none;
 
-  border-radius: 10px;
+  padding: 10px 18px;
+
+  border-radius: 8px;
 
   cursor: pointer;
-
-  font-weight: 600;
-
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: #1d4ed8;
-  }
 `;

@@ -1,30 +1,24 @@
 import {
   HeaderContainer,
-  LogoSection,
   Title,
   Subtitle,
-  ActionContainer,
   GithubButton,
-} from "../styles/Header.styles"
+} from "../styles/Header.styles";
 
-const Header = () => {
+export default function Header() {
   return (
     <HeaderContainer>
-      <LogoSection>
+      <div>
         <Title>AI Code Reviewer</Title>
 
         <Subtitle>
-          Review, optimize and secure your code with AI
+          Analyze bugs, security issues and performance using AI
         </Subtitle>
-      </LogoSection>
+      </div>
 
-      <ActionContainer>
-        <GithubButton>
-          Connect GitHub
-        </GithubButton>
-      </ActionContainer>
+      <GithubButton>
+        Connect GitHub
+      </GithubButton>
     </HeaderContainer>
   );
-};
-
-export default Header;
+}
