@@ -1,3 +1,5 @@
+import ReactMarkdown from "react-markdown";
+
 import {
   ReviewContainer,
   ReviewTitle,
@@ -8,12 +10,20 @@ type Props = {
   review: string;
 };
 
-export default function ReviewPanel({ review }: Props) {
+export default function ReviewPanel({
+  review,
+}: Props) {
   return (
     <ReviewContainer>
-      <ReviewTitle>AI Review</ReviewTitle>
+      <ReviewTitle>
+        AI Review
+      </ReviewTitle>
 
-      <ReviewContent>{review || "Waiting for analysis..."}</ReviewContent>
+      <ReviewContent>
+        <ReactMarkdown>
+          {review || "Waiting for analysis..."}
+        </ReactMarkdown>
+      </ReviewContent>
     </ReviewContainer>
   );
 }

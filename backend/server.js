@@ -35,40 +35,54 @@ app.post("/api/review", async (req, res) => {
   try {
     const { language, code } = req.body;
 
-    if (!code) {
-      return res.status(400).json({
-        error: "Code is required",
-      });
-    }
-
     const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
       messages: [
         {
           role: "system",
           content:
-            "You are a senior software engineer. Review the code and provide bugs, security issues, performance improvements, and best practices.",
+            "Review this code and provide bugs, security issues, performance improvements and best practices.",
         },
         {
           role: "user",
-          content: `Language: ${language}\n\nCode:\n${code}`,
+          content: code,
         },
       ],
-      temperature: 0.3,
+      model: "llama-3.3-70b-versatile",
     });
 
-    return res.json({
-      review: completion.choices[0].message.content,
-      confidence: 95,
+    // AI Review
+    const review = completion.choices[0].message.content;
+
+    // Vulnerability Analysis
+    let high = 0;
+    let medium = 0;
+    let low = 0;
+
+    if (code.includes("password")) high++;
+
+    if (code.includes("eval(")) high++;
+
+    if (code.includes("console.log")) medium++;
+
+    if (code.includes("any")) low++;
+
+    // Confidence Score
+    const confidence = 95;
+
+    res.json({
+      review,
+      confidence,
+      vulnerabilities: {
+        high,
+        medium,
+        low,
+      },
     });
   } catch (error) {
-    console.error("========== ERROR ==========");
     console.error(error);
-    console.error("===========================");
 
-    return res.status(500).json({
-      message: error.message,
-      stack: error.stack,
+    res.status(500).json({
+      error: "Failed to review code",
     });
   }
 });

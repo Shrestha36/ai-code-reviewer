@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -10,6 +12,6 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: #0d1117;
     color: white;
-    font-family: Inter, sans-serif;
+    font-family: 'JetBrains Mono', monospace;
   }
 `;

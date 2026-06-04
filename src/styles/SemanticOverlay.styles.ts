@@ -2,27 +2,26 @@ import styled from "styled-components";
 
 export const OverlayContainer = styled.div`
   position: absolute;
-  top: 24px;
-  right: 24px;
 
-  width: 420px;
-  max-height: 500px;
+  top: 20px;
+  right: 20px;
+
+  width: 320px;
+  max-height: 300px;
 
   overflow-y: auto;
 
-  padding: 24px;
+  background: #111827;
 
-  background: rgba(15, 23, 42, 0.97);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(96,165,250,.3);
 
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 18px;
+  border-radius: 16px;
 
-  color: #e2e8f0;
+  padding: 16px;
 
-  z-index: 999;
+  z-index: 10;
 
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
 `;
 
 export const OverlayTitle = styled.h3`
@@ -41,4 +40,28 @@ export const OverlayText = styled.div`
   white-space: pre-wrap;
 
   color: #cbd5e1;
+`;
+export const CloseButton = styled.button`
+  position: absolute;
+
+  top: 12px;
+
+  right: 12px;
+
+  background: transparent;
+
+  border: none;
+
+  color: #94a3b8;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  transition: 0.2s;
+
+  &:hover {
+    color: white;
+    transform: scale(1.1);
+  }
 `;

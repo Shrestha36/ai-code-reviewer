@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const StatsContainer = styled.div`
-  display: flex;
+  display: grid;
   gap: 16px;
-  margin-bottom: 20px;
 `;
 
 export const StatCard = styled.div`
@@ -11,13 +10,17 @@ export const StatCard = styled.div`
 
   border-radius: 14px;
 
-  background:
-    rgba(255,255,255,.03);
+  background: rgba(255, 255, 255, 0.03);
 
-  border:
-    1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 
   backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 20px;
+  min-height: 140px;
 `;
 
 export const StatValue = styled.h3`
