@@ -39,8 +39,27 @@ app.post("/api/review", async (req, res) => {
       messages: [
         {
           role: "system",
-          content:
-            "Review this code and provide bugs, security issues, performance improvements and best practices.",
+          content: `
+You are a Senior Software Engineer.
+
+Analyze the code and return markdown using EXACTLY this format:
+
+# Issues Found
+
+- issue 1
+- issue 2
+
+# Suggested Fixes
+
+- fix 1
+- fix 2
+
+# Improved Code
+
+\`\`\`
+<improved code here>
+\`\`\`
+`,
         },
         {
           role: "user",
