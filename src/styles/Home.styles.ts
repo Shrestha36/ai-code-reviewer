@@ -45,6 +45,8 @@ export const ReviewSection = styled.div`
 
 export const LanguageContainer = styled.div`
   margin: 20px;
+  display: flex;
+  gap: 20px;
 `;
 export const HomeEditorContainer = styled.div`
    flex: 1;
@@ -59,3 +61,4 @@ export const TopSection = styled.div`
   display: flex;
   gap: 24px;
 `;
+export const GithubInputWrapper = styled.div``

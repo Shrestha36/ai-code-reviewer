@@ -148,6 +148,29 @@ Use concise bullet points.
     });
   }
 });
+app.post("/api/github-review", async (req, res) => {
+  const { repoUrl } = req.body;
+
+  res.json({
+    review: `
+# Repository Review
+
+Repository:
+${repoUrl}
+
+## Tech Stack
+React
+TypeScript
+
+## Architecture
+Component Based
+
+## Recommendations
+- Add testing
+- Improve documentation
+`,
+  });
+});
 
 const PORT = 4000;
 

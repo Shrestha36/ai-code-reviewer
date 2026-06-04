@@ -6,7 +6,10 @@ import LanguageSelector from "../components/LanguageSelector";
 import CodeEditor from "../components/CodeEditor";
 import ReviewPanel from "../components/ReviewPanel";
 import StatsPanel from "../components/StatsPanel";
+import FileUpload from "../components/FileUpload";
+import GithubAnalysis from "../components/GithubAnalysis";
 import { calculateComplexity } from "../utils/codeMetrics";
+import { analyzeGithubRepo } from "../services/api";
 
 import {
   PageContainer,
@@ -15,7 +18,7 @@ import {
   ReviewSection,
   LanguageContainer,
   HomeEditorContainer,
-  TopSection
+  TopSection,
 } from "../styles/Home.styles";
 
 function Home() {
@@ -24,6 +27,7 @@ function Home() {
   const [review, setReview] = useState("");
   const [loading, setLoading] = useState(false);
   const [confidence, setConfidence] = useState(0);
+  const [showGithubInput, setShowGithubInput] = useState(false);
   const [vulnerabilities, setVulnerabilities] = useState({
     high: 0,
     medium: 0,
@@ -55,12 +59,45 @@ function Home() {
       setLoading(false);
     }
   };
+  const handleGithubReview = async (repoUrl: string) => {
+    if (!repoUrl.trim()) {
+      setReview("Please enter a GitHub repository URL.");
+
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      setReview("");
+
+      const result = await analyzeGithubRepo(repoUrl);
+
+      console.log("GITHUB RESULT:", result);
+
+      setReview(result.review);
+
+      setShowGithubInput(false);
+    } catch (error) {
+      console.error(error);
+
+      setReview("Failed to analyze repository.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <PageContainer>
-      <Header />
+      <Header onGithubClick={() => setShowGithubInput((prev) => !prev)} />
+
+      {showGithubInput && (
+        <GithubAnalysis onAnalyze={handleGithubReview} loading={loading} />
+      )}
+
       <LanguageContainer>
         <LanguageSelector language={language} setLanguage={setLanguage} />
+        <FileUpload onFileSelect={setCode} />
       </LanguageContainer>
       <ContentGrid>
         <TopSection>

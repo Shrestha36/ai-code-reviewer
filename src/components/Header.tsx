@@ -5,7 +5,13 @@ import {
   GithubButton,
 } from "../styles/Header.styles";
 
-export default function Header() {
+type Props = {
+  onGithubClick: () => void;
+};
+
+export default function Header({
+  onGithubClick,
+}: Props) {
   return (
     <HeaderContainer>
       <div>
@@ -16,7 +22,7 @@ export default function Header() {
         </Subtitle>
       </div>
 
-      <GithubButton>
+      <GithubButton onClick={onGithubClick}>
         Connect GitHub
       </GithubButton>
     </HeaderContainer>
